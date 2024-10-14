@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Invitación de Cumpleaños</title>  
+    <style>  
+        body {  
+            margin: 0;  
+            font-family: 'Poppins', sans-serif;  
+            color: #fff;  
+            background-color: #0400ff; /* Color principal inspirado en el tema */  
+            background-image: url('fotos/6f3e488aa3231e4800bce78a4c64c24a.jpg');  
+            display: flex;  
+            flex-direction: column;  
+            align-items: center;  
+            justify-content: space-between;   
+            min-height: 100vh;  
+            text-align: center;  
+        }  
+
+        .header {  
+            flex-grow: 1; /* Ocupa el espacio, empujando el contenido hacia el fondo */  
+            display: flex;  
+            flex-direction: column;  
+            align-items: center;   
+            justify-content: center;  
+            background-color: #000000;   
+            background-image: url("fotos/6df973e2a71986d25a79bf84381eee54.jpg");  
+            border-bottom-left-radius: 30px;  
+            border-bottom-right-radius: 30px;  
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);  
+            padding: 20px;   
+        }  
+
+        .content {  
+            margin-bottom: 20px; /* Espaciado inferior para el contenido */  
+            width: 90%;  
+            max-width: 90%;  
+        }  
+
+        h1, h2, p {  
+            margin: 0 0 10px 0; /* Ajusta el espaciado de los elementos */  
+        }  
+
+        #countdown-timer {  
+            backdrop-filter: blur(10px);  
+            padding: 20px;  
+            border-radius: 15px;  
+            background-color: rgba(109, 104, 107, 0.7);   
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);  
+            margin: 0 auto; /* Centra el timer */  
+            width: 80%; /* Ajusta el ancho del cronómetro */  
+            max-width: 600px; /* Máximo ancho del cronómetro */  
+        }  
+
+        #countdown-timer span {  
+            display: inline-block;  
+            padding: 5px;  
+            background-color: rgba(255, 102, 178, 0.9);  
+            border-radius: 5px;  
+            margin: 5px;   
+            font-weight: bold;  
+            font-size: 18px;  
+            animation: bounce 1s infinite alternate; /* Animación */  
+        }  
+
+        /* Animación de rebote */  
+        @keyframes bounce {  
+            from { transform: translateY(0); }  
+            to { transform: translateY(-10px); }  
+        }  
+
+        .button {  
+            background-color: #FFA500;  
+            color: white;  
+            padding: 10px 15px;  
+            border: none;  
+            border-radius: 5px;  
+            cursor: pointer;  
+            text-decoration: none;  
+            font-size: 16px;  
+            margin-top: 20px; /* Espaciado superior */  
+            display: inline-block;   
+        }  
+
+        .button:hover {  
+            background-color: #ffd700;  
+        }  
+
+        @media (max-width: 600px) {  
+            .content {  
+                padding: 10px;  
+            }  
+
+            h1 {  
+                font-size: 20px;  
+            }  
+
+            h2 {  
+                font-size: 18px;  
+            }  
+
+            #countdown-timer {  
+                font-size: 16px; /* Ajuste de tamaño de fuente en móviles */  
+            }  
+
+            #countdown-timer span {  
+                font-size: 14px; /* Texto más pequeño en celulares */  
+                padding: 5px;  
+            }  
+        }  
+    </style>  
+</head>  
+<body>  
+
+<div class="header">  
+    <h1>¡Cumpleaños de Chloe!</h1>  
+</div>  
+
+<div class="content">  
+    <p>¡Chloe cumple 6 años!</p>  
+    <p><strong>Fecha:</strong> 20 de octubre</p>  
+    <p><strong>Hora:</strong> Desde las 18:00 hasta las 22:00</p>  
+    <p>¡No faltes! Será una celebración increíble.</p>  
+    
+    <h2>Falta para la fiesta</h2>  
+</div>  
+
+<div id="countdown-timer">  
+    <span id="days">00</span> Días  
+    <span id="hours">00</span> Horas  
+    <span id="minutes">00</span> Minutos  
+    <span id="seconds">00</span> Segundos  
+</div>  
+
+<a href="https://www.google.com/maps/place/DIRECCION_AQUI" target="_blank" class="button">Ver en Google Maps</a>  
+
+<script>  
+    // Configura la fecha de la fiesta: 20 de octubre a las 00:00:00  
+    const countDownDate = new Date("Oct 20, 2024 00:00:00").getTime();  
+
+    // Actualiza el conteo cada 1 segundo  
+    const x = setInterval(function() {  
+        const now = new Date().getTime();  
+        const distance = countDownDate - now;  
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));  
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));  
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));  
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);  
+
+        document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;  
+        document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;  
+        document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;  
+        document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;  
+
+        // Si el conteo termina, muestra un mensaje  
+        if (distance < 0) {  
+            clearInterval(x);  
+            document.getElementById("countdown-timer").innerHTML = "¡La fiesta ha comenzado!";  
+        }  
+    }, 1000);  
+</script>  
+
+</body>  
+</html>
